@@ -2,5 +2,6 @@ bucket.png
 drop.png
 drop.wav
 dropBad.png
+fondo.png
 hurt.ogg
 rain.mp3
