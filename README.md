@@ -27,3 +27,11 @@ La implementación de los requerimientos GM se realizará progresivamente durant
 
 ## Correr programa
 lwjgl3:run en comando al colocar run
+
+## Seleccion de modo de juego
+Modo default -> Teclado
+Presionar 1 -> Teclado
+Presionar 2 -> Tactil/Mouse
+
+## Problemas
+La tabulacion esta muy desordenada, hay que configurar bien las tabulaciones de los IDE y luego arreglar la tabulacion en el codigo.
