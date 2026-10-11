@@ -7,22 +7,25 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Input;
 
 public class GameScreen implements Screen {
 	final GameLluviaMenu game;
-    private OrthographicCamera camera;
+        private OrthographicCamera camera;
 	private SpriteBatch batch;	   
 	private BitmapFont font;
 	private Texture fondo;
 	private Partida partida;
+        private EstrategiaMovimiento movimientoTeclado;
+        private EstrategiaMovimiento movimientoTactil;
 
 	   
 	//boolean activo = true;
 
 	public GameScreen(final GameLluviaMenu game) {
 		this.game = game;
-        this.batch = game.getBatch();
-        this.font = game.getFont();
+            this.batch = game.getBatch();
+            this.font = game.getFont();
 		fondo = new Texture(Gdx.files.internal("fondo.png"));
 	      // camera
 	      camera = new OrthographicCamera();
@@ -32,10 +35,19 @@ public class GameScreen implements Screen {
 	      PartidaBuilder builder = new PartidaRecolectorBuilder();
 	      DirectorPartida director = new DirectorPartida(builder);
 	      partida = director.prepararPartida();
+              movimientoTeclado = new MovimientoTeclado();
+              movimientoTactil = new MovimientoTactil(camera);
+              partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
 	}
 
 	@Override
 	public void render(float delta) {
+                if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+                    partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
+                }
+                if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
+                    partida.getTarro().setEstrategiaMovimiento(movimientoTactil);
+                }
 		//limpia la pantalla con color azul obscuro.
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 		//actualizar matrices de la cámara
