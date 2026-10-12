@@ -1,6 +1,7 @@
 package puppy.code;
 
 public class DirectorPartida {
+
     private PartidaBuilder builder;
 
     public DirectorPartida(PartidaBuilder builder) {
