@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 		private SpriteBatch batch;
 		private BitmapFont font;
-		private int higherScore;
 
 		public void create() {
 			batch = new SpriteBatch();
@@ -33,13 +32,5 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 			return font;
 		}
 
-		public int getHigherScore() {
-			return higherScore;
-		}
-
-		public void setHigherScore(int higherScore) {
-			this.higherScore = higherScore;
-		}
-		
 
 	}
