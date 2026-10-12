@@ -1,20 +1,11 @@
 package puppy.code;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.Input;
 
-public class GameScreen implements Screen {
+public class GameScreen extends PantallaBase {
 
-    final GameLluviaMenu game;
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
-    private BitmapFont font;
     private Texture fondo;
     private Partida partida;
     private EstrategiaMovimiento movimientoTeclado;
@@ -22,43 +13,36 @@ public class GameScreen implements Screen {
 
     //boolean activo = true;
     public GameScreen(final GameLluviaMenu game) {
-        this.game = game;
-        this.batch = game.getBatch();
-        this.font = game.getFont();
+        super(game);
         fondo = new Texture(Gdx.files.internal("fondo.png"));
-        // camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-        batch = new SpriteBatch();
 
         PartidaBuilder builder = new PartidaRecolectorBuilder();
         DirectorPartida director = new DirectorPartida(builder);
         partida = director.prepararPartida();
         movimientoTeclado = new MovimientoTeclado();
-        movimientoTactil = new MovimientoTactil(camera);
+        movimientoTactil = new MovimientoTactil(getCamera());
         partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
     }
 
     @Override
-    public void render(float delta) {
+    protected void dibujar() {
+        getBatch().draw(fondo, 0, 0, 800, 480);
+        //dibujar textos
+        getFont().draw(getBatch(), "Gotas totales: " + partida.getTarro().getPuntos(), 5, 475);
+        getFont().draw(getBatch(), "Vidas : " + partida.getTarro().getVidas(), 670, 475);
+        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(), getCamera().viewportWidth / 2 - 50, 475);
+        partida.getTarro().dibujar(getBatch());
+        partida.getLluvia().actualizarDibujoLluvia(getBatch());
+    }
+
+    @Override
+    protected void actualizar(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
             partida.getTarro().setEstrategiaMovimiento(movimientoTactil);
         }
-        //limpia la pantalla con color azul obscuro.
-        ScreenUtils.clear(0, 0, 0.2f, 1);
-        //actualizar matrices de la cámara
-        camera.update();
-        //actualizar 
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        batch.draw(fondo, 0, 0, 800, 480);
-        //dibujar textos
-        font.draw(batch, "Gotas totales: " + partida.getTarro().getPuntos(), 5, 475);
-        font.draw(batch, "Vidas : " + partida.getTarro().getVidas(), 670, 475);
-        font.draw(batch, "HighScore : " + Puntaje.getInstancia().getHigherScore(), camera.viewportWidth / 2 - 50, 475);
 
         if (!partida.getTarro().estaHerido()) {
             // movimiento del tarro desde teclado
@@ -71,19 +55,10 @@ public class GameScreen implements Screen {
                     puntaje.setHigherScore(partida.getTarro().getPuntos());
                 }
                 //ir a la ventana de finde juego y destruir la actual
-                game.setScreen(new GameOverScreen(game));
+                getGame().setScreen(new GameOverScreen(getGame()));
                 dispose();
             }
         }
-
-        partida.getTarro().dibujar(batch);
-        partida.getLluvia().actualizarDibujoLluvia(batch);
-
-        batch.end();
-    }
-
-    @Override
-    public void resize(int width, int height) {
     }
 
     @Override
@@ -93,19 +68,9 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void hide() {
-
-    }
-
-    @Override
     public void pause() {
         partida.getLluvia().pausar();
-        game.setScreen(new PausaScreen(game, this));
-    }
-
-    @Override
-    public void resume() {
-
+        getGame().setScreen(new PausaScreen(getGame(), this));
     }
 
     @Override
