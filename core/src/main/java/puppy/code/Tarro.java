@@ -37,12 +37,24 @@ public class Tarro {
         return puntos;
     }
 
-    public Rectangle getArea() {
-        return bucket;
-    }
-
     public void sumarPuntos(int pp) {
         puntos += pp;
+    }
+
+    public void moverIzquierda(float distancia) {
+        bucket.x -= distancia;
+    }
+
+    public void moverDerecha(float distancia) {
+        bucket.x += distancia;
+    }
+
+    public void moverAlCentro(float posicionX) {
+        bucket.x = posicionX - bucket.width / 2;
+    }
+
+    public boolean colisionaCon(Rectangle otraArea) {
+        return bucket.overlaps(otraArea);
     }
 
     public void crear() {
@@ -74,7 +86,7 @@ public class Tarro {
     }
 
     public void actualizarMovimiento() {
-        estrategiaMovimiento.mover(bucket, velx, Gdx.graphics.getDeltaTime());
+        estrategiaMovimiento.mover(this, velx, Gdx.graphics.getDeltaTime());
 
         // mantener el tarro dentro del juego
         if (bucket.x < 0) {

@@ -50,12 +50,12 @@ public class Lluvia {
 	      ComportamientoGota gota = gotas.get(i);
 	      gota.actualizarMovimiento();
 	      //cae al suelo y se elimina
-	      if(gota.getArea().y + 64 < 0) {
+	      if(gota.estaFueraDePantalla()) {
 	    	  gotas.removeIndex(i);
 	    	  i--;
 	    	  continue;
 	      }
-	      if(gota.getArea().overlaps(tarro.getArea())) {
+	      if(gota.colisionaCon(tarro)) {
 	    	  gota.aplicarEfecto(tarro);
 	    	  if (tarro.getVidas()<=0)
 	    		 return false;

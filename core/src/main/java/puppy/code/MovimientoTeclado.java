@@ -6,18 +6,17 @@ package puppy.code;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Rectangle;
 
 public class MovimientoTeclado implements EstrategiaMovimiento {
 
     @Override
-    public void mover(Rectangle area, float velocidad, float delta) {
+    public void mover(Tarro tarro, float velocidad, float delta) {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            area.x -= velocidad * delta;
+            tarro.moverIzquierda(velocidad * delta);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            area.x += velocidad * delta;
+            tarro.moverDerecha(velocidad * delta);
         }
     }
 }

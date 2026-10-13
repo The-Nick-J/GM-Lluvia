@@ -24,8 +24,12 @@ public abstract class Gota {
         batch.draw(imagen, area.x, area.y);
     }
 
-    public Rectangle getArea() {
-        return area;
+    public boolean estaFueraDePantalla() {
+        return area.y + 64 < 0;
+    }
+
+    public boolean colisionaCon(Tarro tarro) {
+        return tarro.colisionaCon(area);
     }
 
     public abstract void aplicarEfecto(Tarro tarro);
