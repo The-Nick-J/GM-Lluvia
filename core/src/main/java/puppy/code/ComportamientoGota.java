@@ -1,7 +1,6 @@
 package puppy.code;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 
 public interface ComportamientoGota {
 
@@ -9,7 +8,9 @@ public interface ComportamientoGota {
 
     public void dibujar(SpriteBatch batch);
 
-    public Rectangle getArea();
+    public boolean estaFueraDePantalla();
+
+    public boolean colisionaCon(Tarro tarro);
 
     public void aplicarEfecto(Tarro tarro);
 }

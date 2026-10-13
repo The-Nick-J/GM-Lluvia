@@ -6,7 +6,6 @@ package puppy.code;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class MovimientoTactil implements EstrategiaMovimiento {
@@ -18,7 +17,7 @@ public class MovimientoTactil implements EstrategiaMovimiento {
     }
 
     @Override
-    public void mover(Rectangle area, float velocidad, float delta) {
+    public void mover(Tarro tarro, float velocidad, float delta) {
         if (Gdx.input.isTouched()) {
             Vector3 posicion = new Vector3(
                     Gdx.input.getX(),
@@ -27,7 +26,7 @@ public class MovimientoTactil implements EstrategiaMovimiento {
             );
 
             camera.unproject(posicion);
-            area.x = posicion.x - area.width / 2;
+            tarro.moverAlCentro(posicion.x);
         }
     }
 }
