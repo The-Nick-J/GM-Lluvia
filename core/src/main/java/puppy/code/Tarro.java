@@ -78,6 +78,11 @@ public class Tarro {
         } else {
 
             batch.draw(bucketImage, bucket.x, bucket.y + MathUtils.random(-5, 5));
+        }
+    }
+
+    public void actualizarEstado() {
+        if (herido) {
             tiempoHerido--;
             if (tiempoHerido <= 0) {
                 herido = false;

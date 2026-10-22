@@ -21,7 +21,9 @@ public class Puntaje {
         return this.higherScore;
     }
     
-    public void setHigherScore(int puntaje){
-        this.higherScore = puntaje;
+    public void registrarPuntaje(int puntos) {
+    if (puntos > higherScore) {
+        higherScore = puntos;
     }
+}
 }

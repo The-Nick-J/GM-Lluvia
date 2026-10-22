@@ -44,20 +44,10 @@ public class GameScreen extends PantallaBase {
             partida.getTarro().setEstrategiaMovimiento(movimientoTactil);
         }
 
-        if (!partida.getTarro().estaHerido()) {
-            // movimiento del tarro desde teclado
-            partida.getTarro().actualizarMovimiento();
-            // caida de la lluvia 
-            if (!partida.getLluvia().actualizarMovimiento(partida.getTarro())) {
-                //actualizar HigherScore
-                Puntaje puntaje = Puntaje.getInstancia();
-                if (puntaje.getHigherScore() < partida.getTarro().getPuntos()) {
-                    puntaje.setHigherScore(partida.getTarro().getPuntos());
-                }
-                //ir a la ventana de finde juego y destruir la actual
-                getGame().setScreen(new GameOverScreen(getGame()));
-                dispose();
-            }
+        if (!partida.actualizar()) {
+            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos());
+            getGame().setScreen(new GameOverScreen(getGame()));
+            dispose();
         }
     }
 
