@@ -19,4 +19,15 @@ public class Partida {
     public Lluvia getLluvia() {
         return lluvia;
     }
+
+    public boolean actualizar() {
+        tarro.actualizarEstado();
+
+        if (!tarro.estaHerido()) {
+            tarro.actualizarMovimiento();
+            return lluvia.actualizarMovimiento(tarro);
+        }
+
+        return true;
+    }
 }
