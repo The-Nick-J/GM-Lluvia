@@ -10,13 +10,16 @@ public class GameScreen extends PantallaBase {
     private Partida partida;
     private EstrategiaMovimiento movimientoTeclado;
     private EstrategiaMovimiento movimientoTactil;
+    private boolean modoDificil;
 
     //boolean activo = true;
-    public GameScreen(final GameLluviaMenu game) {
+    public GameScreen(final GameLluviaMenu game, boolean modoDificil) {
         super(game);
-        fondo = new Texture(Gdx.files.internal("fondo.png"));
+        this.modoDificil = modoDificil;
+        String archivoFondo = modoDificil ? "fondoDificil.png" : "fondo.png";
+        fondo = new Texture(Gdx.files.internal(archivoFondo));
 
-        PartidaBuilder builder = new PartidaRecolectorBuilder();
+        PartidaBuilder builder = new PartidaRecolectorBuilder(modoDificil);
         DirectorPartida director = new DirectorPartida(builder);
         partida = director.prepararPartida();
         movimientoTeclado = new MovimientoTeclado();
@@ -30,7 +33,7 @@ public class GameScreen extends PantallaBase {
         //dibujar textos
         getFont().draw(getBatch(), "Gotas totales: " + partida.getTarro().getPuntos(), 5, 475);
         getFont().draw(getBatch(), "Vidas : " + partida.getTarro().getVidas(), 670, 475);
-        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(), getCamera().viewportWidth / 2 - 50, 475);
+        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(modoDificil), getCamera().viewportWidth / 2 - 50, 475);
         partida.getTarro().dibujar(getBatch());
         partida.getLluvia().actualizarDibujoLluvia(getBatch());
     }
@@ -45,8 +48,8 @@ public class GameScreen extends PantallaBase {
         }
 
         if (!partida.actualizar()) {
-            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos());
-            getGame().setScreen(new GameOverScreen(getGame()));
+            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos(), modoDificil);
+            getGame().setScreen(new GameOverScreen(getGame(), modoDificil));
             dispose();
         }
     }

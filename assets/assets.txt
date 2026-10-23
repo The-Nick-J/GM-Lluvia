@@ -3,5 +3,6 @@ drop.png
 drop.wav
 dropBad.png
 fondo.png
+fondoDificil.png
 hurt.ogg
 rain.mp3

@@ -15,12 +15,14 @@ public class Lluvia {
     private Texture gotaMala;
     private Sound dropSound;
     private Music rainMusic;
+	private long tiempoEntreGotas;
 	   
-	public Lluvia(Texture gotaBuena, Texture gotaMala, Sound ss, Music mm) {
+	public Lluvia(Texture gotaBuena, Texture gotaMala, Sound ss, Music mm, long tiempoEntreGotas) {
 		rainMusic = mm;
 		dropSound = ss;
 		this.gotaBuena = gotaBuena;
 		this.gotaMala = gotaMala;
+		this.tiempoEntreGotas = tiempoEntreGotas;
 	}
 	
 	public void crear() {
@@ -42,7 +44,7 @@ public class Lluvia {
 	
    public boolean actualizarMovimiento(Tarro tarro) { 
 	   // generar gotas de lluvia 
-	   if(TimeUtils.nanoTime() - lastDropTime > 100000000) crearGotaDeLluvia();
+	   if(TimeUtils.nanoTime() - lastDropTime > tiempoEntreGotas) crearGotaDeLluvia();
 	  
 	   
 	   // revisar si las gotas cayeron al suelo o chocaron con el tarro

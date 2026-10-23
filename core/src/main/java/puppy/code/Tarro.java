@@ -12,7 +12,7 @@ public class Tarro {
     private Rectangle bucket;
     private Texture bucketImage;
     private Sound sonidoHerido;
-    private int vidas = 3;
+    private int vidas;
     private int puntos = 0;
     private int velx = 400;
     private boolean herido = false;
@@ -20,9 +20,10 @@ public class Tarro {
     private int tiempoHerido;
     private EstrategiaMovimiento estrategiaMovimiento;
 
-    public Tarro(Texture tex, Sound ss) {
+    public Tarro(Texture tex, Sound ss, int vidas) {
         bucketImage = tex;
         sonidoHerido = ss;
+        this.vidas = vidas;
     }
 
     public void setEstrategiaMovimiento(EstrategiaMovimiento estrategiaMovimiento) {
@@ -93,7 +94,6 @@ public class Tarro {
     public void actualizarMovimiento() {
         estrategiaMovimiento.mover(this, velx, Gdx.graphics.getDeltaTime());
 
-        // mantener el tarro dentro del juego
         if (bucket.x < 0) {
             bucket.x = 0;
         }
