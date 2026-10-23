@@ -21,7 +21,6 @@ public abstract class PantallaBase implements Screen {
         camera.setToOrtho(false, 800, 480);
     }
     
-    // Template que todas las subclases van a seguir
     @Override
     public final void render(float delta){
         limpiarPantalla();
@@ -35,12 +34,10 @@ public abstract class PantallaBase implements Screen {
         actualizar(delta);
     }
     
-    // Todas las subclases no cambian este bloque de codigo excepto PausaScreen
     protected void limpiarPantalla(){
         ScreenUtils.clear(0, 0, 0.2f, 1);
     }
     
-    //Instrucciones dentro del batch en render
     protected abstract void dibujar();
     
     
