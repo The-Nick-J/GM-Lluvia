@@ -32,6 +32,8 @@ La implementación de los requerimientos GM se realiza progresivamente durante e
 4. En el campo `Gradle Command`, escribe `lwjgl3:run` y presiona `OK`.
 5. Cuando aparezca el menú, presiona `1` para jugar en modo fácil o `2` para jugar en modo difícil.
 
+*Reporte completo y diagramas UML en carpeta /docs*
+
 ## Seleccion de modo de juego
 Modo default -> Teclado  
 Presionar 1 -> Teclado  
