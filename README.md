@@ -22,7 +22,7 @@ INF2236 - Programación Avanzada
 ## Estado del proyecto
 
 Proyecto base preparado a partir de GameLluviaMenu2024.
-La implementación de los requerimientos GM se realiza progresivamente durante el desarrollo del semestre.
+Finalizado, **Reporte completo** y **diagramas** UML en carpeta **/docs**
 
 ## Ejecutar el juego
 
@@ -31,8 +31,6 @@ La implementación de los requerimientos GM se realiza progresivamente durante e
 3. Selecciona `Run Gradle`.
 4. En el campo `Gradle Command`, escribe `lwjgl3:run` y presiona `OK`.
 5. Cuando aparezca el menú, presiona `1` para jugar en modo fácil o `2` para jugar en modo difícil.
-
-*Reporte completo y diagramas UML en carpeta /docs*
 
 ## Seleccion de modo de juego
 Modo default -> Teclado  
