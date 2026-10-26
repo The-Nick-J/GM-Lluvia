@@ -22,8 +22,7 @@ INF2236 - Programación Avanzada
 ## Estado del proyecto
 
 Proyecto base preparado a partir de GameLluviaMenu2024.
-
-La implementación de los requerimientos GM se realizará progresivamente durante el desarrollo del semestre.
+La implementación de los requerimientos GM se realiza progresivamente durante el desarrollo del semestre.
 
 ## Ejecutar el juego
 
@@ -37,6 +36,3 @@ La implementación de los requerimientos GM se realizará progresivamente durant
 Modo default -> Teclado  
 Presionar 1 -> Teclado  
 Presionar 2 -> Tactil/Mouse  
-
-## Problemas
-La tabulacion esta muy desordenada, hay que configurar bien las tabulaciones de los IDE y luego arreglar la tabulacion en el codigo.
