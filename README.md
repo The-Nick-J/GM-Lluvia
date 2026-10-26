@@ -21,7 +21,7 @@ INF2236 - Programación Avanzada
 
 ## Estado del proyecto
 
-Proyecto base preparado a partir de GameLluviaMenu2024.
+Proyecto base preparado a partir de GameLluviaMenu2024. 
 Finalizado, **Reporte completo** y **diagramas** UML en carpeta **/docs**
 
 ## Ejecutar el juego
