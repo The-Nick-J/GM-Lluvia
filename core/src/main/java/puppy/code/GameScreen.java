@@ -1,39 +1,32 @@
 package puppy.code;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Input;
 
 public class GameScreen extends PantallaBase {
 
-    private Texture fondo;
+    private PartidaBuilder builder;
     private Partida partida;
     private EstrategiaMovimiento movimientoTeclado;
     private EstrategiaMovimiento movimientoTactil;
-    private boolean modoDificil;
 
     //boolean activo = true;
-    public GameScreen(final GameLluviaMenu game, boolean modoDificil) {
+    public GameScreen(final GameLluviaMenu game, PartidaBuilder builder) {
         super(game);
-        this.modoDificil = modoDificil;
-        String archivoFondo = modoDificil ? "fondoDificil.png" : "fondo.png";
-        fondo = new Texture(Gdx.files.internal(archivoFondo));
-
-        PartidaBuilder builder = new PartidaRecolectorBuilder(modoDificil);
+        this.builder = builder;
         DirectorPartida director = new DirectorPartida(builder);
         partida = director.prepararPartida();
         movimientoTeclado = new MovimientoTeclado();
         movimientoTactil = new MovimientoTactil(getCamera());
-        partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
     }
 
     @Override
     protected void dibujar() {
-        getBatch().draw(fondo, 0, 0, 800, 480);
+        getBatch().draw(partida.getFondo(), 0, 0, 800, 480);
         //dibujar textos
         getFont().draw(getBatch(), "Gotas totales: " + partida.getTarro().getPuntos(), 5, 475);
         getFont().draw(getBatch(), "Vidas : " + partida.getTarro().getVidas(), 670, 475);
-        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(modoDificil), getCamera().viewportWidth / 2 - 50, 475);
+        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(partida.esModoDificil()), getCamera().viewportWidth / 2 - 50, 475);
         partida.getTarro().dibujar(getBatch());
         partida.getLluvia().actualizarDibujoLluvia(getBatch());
     }
@@ -48,8 +41,8 @@ public class GameScreen extends PantallaBase {
         }
 
         if (!partida.actualizar()) {
-            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos(), modoDificil);
-            getGame().setScreen(new GameOverScreen(getGame(), modoDificil));
+            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos(), partida.esModoDificil());
+            getGame().setScreen(new GameOverScreen(getGame(), builder));
             dispose();
         }
     }
@@ -68,7 +61,7 @@ public class GameScreen extends PantallaBase {
 
     @Override
     public void dispose() {
-        fondo.dispose();
+        partida.getFondo().dispose();
         partida.getTarro().destruir();
         partida.getLluvia().destruir();
 

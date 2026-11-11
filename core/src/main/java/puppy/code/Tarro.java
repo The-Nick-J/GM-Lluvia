@@ -24,6 +24,7 @@ public class Tarro {
         bucketImage = tex;
         sonidoHerido = ss;
         this.vidas = vidas;
+        estrategiaMovimiento = new MovimientoTeclado();
     }
 
     public void setEstrategiaMovimiento(EstrategiaMovimiento estrategiaMovimiento) {

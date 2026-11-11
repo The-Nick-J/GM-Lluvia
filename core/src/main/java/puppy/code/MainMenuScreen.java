@@ -20,11 +20,11 @@ public class MainMenuScreen extends PantallaBase {
     @Override
     protected void actualizar(float delta){
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            getGame().setScreen(new GameScreen(getGame(), false));
+            getGame().setScreen(new GameScreen(getGame(), new PartidaFacilBuilder()));
             dispose();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            getGame().setScreen(new GameScreen(getGame(), true));
+            getGame().setScreen(new GameScreen(getGame(), new PartidaDificilBuilder()));
             dispose();
         }
     }
