@@ -5,11 +5,11 @@ import com.badlogic.gdx.Input;
 
 public class GameOverScreen extends PantallaBase {
 
-    private boolean modoDificil;
+    private PartidaBuilder builder;
 
-    public GameOverScreen(final GameLluviaMenu game, boolean modoDificil) {
+    public GameOverScreen(final GameLluviaMenu game, PartidaBuilder builder) {
         super(game);
-        this.modoDificil = modoDificil;
+        this.builder = builder;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class GameOverScreen extends PantallaBase {
     @Override
     protected void actualizar(float delta){
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            getGame().setScreen(new GameScreen(getGame(), modoDificil));
+            getGame().setScreen(new GameScreen(getGame(), builder));
             dispose();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {

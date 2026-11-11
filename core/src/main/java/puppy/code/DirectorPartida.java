@@ -12,6 +12,7 @@ public class DirectorPartida {
         builder.reset();
         builder.construirTarro();
         builder.construirLluvia();
+        builder.construirFondo();
         return builder.getResult();
     }
 }
