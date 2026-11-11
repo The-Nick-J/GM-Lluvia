@@ -2,7 +2,7 @@ package puppy.code;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class GotaMala extends Gota implements ComportamientoGota {
+public class GotaMala extends Gota {
 
     public GotaMala(Texture imagen, float posicionX) {
         super(imagen, posicionX);

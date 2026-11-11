@@ -3,7 +3,7 @@ package puppy.code;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
-public class GotaBuena extends Gota implements ComportamientoGota {
+public class GotaBuena extends Gota {
 
     private Sound sonidoRecoleccion;
 
