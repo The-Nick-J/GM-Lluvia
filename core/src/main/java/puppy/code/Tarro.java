@@ -28,8 +28,10 @@ public class Tarro {
     }
 
     public void setEstrategiaMovimiento(EstrategiaMovimiento estrategiaMovimiento) {
+    if (estrategiaMovimiento != null) {
         this.estrategiaMovimiento = estrategiaMovimiento;
     }
+}
 
     public int getVidas() {
         return vidas;
