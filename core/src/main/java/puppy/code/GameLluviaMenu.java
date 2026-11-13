@@ -12,7 +12,7 @@ public class GameLluviaMenu extends Game implements ContextoJuego{
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        this.setScreen(new MainMenuScreen(this));
+        this.setScreen(new IntroScreen(this));
     }
 
     public void render() {
