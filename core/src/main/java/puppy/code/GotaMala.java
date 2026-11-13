@@ -9,7 +9,7 @@ public class GotaMala extends Gota {
     }
 
     @Override
-    public void aplicarEfecto(Tarro tarro) {
+    public void aplicarEfecto(ReceptorGota tarro) {
         tarro.dañar();
     }
 }

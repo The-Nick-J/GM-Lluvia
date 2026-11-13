@@ -1,8 +1,6 @@
 package puppy.code;
 
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -11,19 +9,15 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class Lluvia {
     private Array<ComportamientoGota> gotas;
     private long lastDropTime;
-    private Texture gotaBuena;
-    private Texture gotaMala;
-    private Sound dropSound;
+    private final CreadorGotas creadorGotas;
     private Music rainMusic;
-	private long tiempoEntreGotas;
+    private long tiempoEntreGotas;
 	   
-	public Lluvia(Texture gotaBuena, Texture gotaMala, Sound ss, Music mm, long tiempoEntreGotas) {
-		rainMusic = mm;
-		dropSound = ss;
-		this.gotaBuena = gotaBuena;
-		this.gotaMala = gotaMala;
-		this.tiempoEntreGotas = tiempoEntreGotas;
-	}
+	public Lluvia(CreadorGotas creadorGotas, Music rainMusic, long tiempoEntreGotas) {
+            this.creadorGotas = creadorGotas;
+            this.rainMusic = rainMusic;
+            this.tiempoEntreGotas = tiempoEntreGotas;
+        }
 	
 	public void crear() {
 		gotas = new Array<ComportamientoGota>();
@@ -34,13 +28,10 @@ public class Lluvia {
 	}
 	
 	private void crearGotaDeLluvia() {
-	      float posicionX = MathUtils.random(0, 800-64);
-	      if (MathUtils.random(1,10)<5)
-	         gotas.add(new GotaMala(gotaMala, posicionX));
-	      else
-	         gotas.add(new GotaBuena(gotaBuena, posicionX, dropSound));
-	      lastDropTime = TimeUtils.nanoTime();
-	   }
+            float posicionX = MathUtils.random(0, 800 - 64);
+            gotas.add(creadorGotas.crearGota(posicionX));
+            lastDropTime = TimeUtils.nanoTime();
+        }
 	
    public boolean actualizarMovimiento(Tarro tarro) { 
 	   // generar gotas de lluvia 
@@ -75,7 +66,7 @@ public class Lluvia {
 	   }
    }
    public void destruir() {
-      dropSound.dispose();
+      creadorGotas.destruir();
       rainMusic.dispose();
    }
    public void pausar() {

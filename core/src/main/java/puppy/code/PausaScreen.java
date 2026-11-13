@@ -1,13 +1,14 @@
 package puppy.code;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class PausaScreen extends PantallaBase {
 
-    private GameScreen juego;
+    private Screen juego;
     
-    public PausaScreen(final GameLluviaMenu game, GameScreen juego) {
+    public PausaScreen(final ContextoJuego game, Screen juego) {
         super(game);
         this.juego = juego;
     }

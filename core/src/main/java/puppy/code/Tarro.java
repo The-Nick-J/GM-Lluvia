@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Tarro {
+public class Tarro implements ReceptorGota {
 
     private Rectangle bucket;
     private Texture bucketImage;

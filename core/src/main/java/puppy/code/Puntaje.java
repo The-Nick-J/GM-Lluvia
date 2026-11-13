@@ -1,14 +1,13 @@
 
 package puppy.code;
 
+import java.util.HashMap;
+
 public class Puntaje {
     private static Puntaje instancia;
-    private int higherScoreFacil;
-    private int higherScoreDificil;
+    private final HashMap<String, Integer> records = new HashMap<>();
     
     private Puntaje(){
-        this.higherScoreFacil = 0;
-        this.higherScoreDificil = 0;
     }
     
     public static Puntaje getInstancia(){
@@ -19,22 +18,16 @@ public class Puntaje {
         return Puntaje.instancia;
     }
     
-    public int getHigherScore(boolean modoDificil){
-        if (modoDificil) {
-            return this.higherScoreDificil;
+    public int getHigherScore(String dificultad){
+        if (records.containsKey(dificultad)) {
+            return records.get(dificultad);
         }
-        return this.higherScoreFacil;
+        return 0;
     }
     
-    public void registrarPuntaje(int puntos, boolean modoDificil) {
-        if (modoDificil) {
-            if (puntos > higherScoreDificil) {
-                higherScoreDificil = puntos;
-            }
-        } else {
-            if (puntos > higherScoreFacil) {
-                higherScoreFacil = puntos;
-            }
+    public void registrarPuntaje(int puntos, String dificultad) {
+        if (puntos > getHigherScore(dificultad)) {
+            records.put(dificultad, puntos);
         }
     }
 }

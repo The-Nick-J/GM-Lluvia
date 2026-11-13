@@ -6,7 +6,7 @@ public class Partida {
     private Tarro tarro;
     private Lluvia lluvia;
     private Texture fondo;
-    private boolean modoDificil;
+    private String dificultad;
 
     public void setFondo(Texture fondo) {
         this.fondo = fondo;
@@ -16,12 +16,12 @@ public class Partida {
         return fondo;
     }
 
-    public void setModoDificil(boolean modoDificil) {
-        this.modoDificil = modoDificil;
+    public void setDificultad(String dificultad) {
+        this.dificultad = dificultad;
     }
 
-    public boolean esModoDificil() {
-        return modoDificil;
+    public String getDificultad() {
+        return dificultad;
     }
 
     public void setTarro(Tarro tarro) {

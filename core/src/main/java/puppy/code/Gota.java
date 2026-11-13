@@ -28,9 +28,9 @@ public abstract class Gota implements ComportamientoGota {
         return area.y + 64 < 0;
     }
 
-    public boolean colisionaCon(Tarro tarro) {
+    public boolean colisionaCon(ReceptorGota tarro) {
         return tarro.colisionaCon(area);
     }
 
-    public abstract void aplicarEfecto(Tarro tarro);
+    public abstract void aplicarEfecto(ReceptorGota tarro);
 }
