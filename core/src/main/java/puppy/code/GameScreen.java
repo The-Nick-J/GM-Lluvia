@@ -33,6 +33,11 @@ public class GameScreen extends PantallaBase {
 
     @Override
     protected void actualizar(float delta) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            pause();
+            return;
+        }
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             partida.getTarro().setEstrategiaMovimiento(movimientoTeclado);
         }

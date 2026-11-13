@@ -20,6 +20,7 @@ public class GameLluviaMenu extends Game implements ContextoJuego{
     }
 
     public void dispose() {
+        super.dispose();
         batch.dispose();
         font.dispose();
     }
