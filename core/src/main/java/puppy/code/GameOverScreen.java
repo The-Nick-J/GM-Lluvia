@@ -7,7 +7,7 @@ public class GameOverScreen extends PantallaBase {
 
     private PartidaBuilder builder;
 
-    public GameOverScreen(final GameLluviaMenu game, PartidaBuilder builder) {
+    public GameOverScreen(final ContextoJuego game, PartidaBuilder builder) {
         super(game);
         this.builder = builder;
     }

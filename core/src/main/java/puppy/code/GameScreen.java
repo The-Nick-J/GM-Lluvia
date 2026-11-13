@@ -11,7 +11,7 @@ public class GameScreen extends PantallaBase {
     private EstrategiaMovimiento movimientoTactil;
 
     //boolean activo = true;
-    public GameScreen(final GameLluviaMenu game, PartidaBuilder builder) {
+    public GameScreen(final ContextoJuego game, PartidaBuilder builder) {
         super(game);
         this.builder = builder;
         DirectorPartida director = new DirectorPartida(builder);
@@ -26,7 +26,7 @@ public class GameScreen extends PantallaBase {
         //dibujar textos
         getFont().draw(getBatch(), "Gotas totales: " + partida.getTarro().getPuntos(), 5, 475);
         getFont().draw(getBatch(), "Vidas : " + partida.getTarro().getVidas(), 670, 475);
-        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(partida.esModoDificil()), getCamera().viewportWidth / 2 - 50, 475);
+        getFont().draw(getBatch(), "HighScore : " + Puntaje.getInstancia().getHigherScore(partida.getDificultad()), getCamera().viewportWidth / 2 - 50, 475);
         partida.getTarro().dibujar(getBatch());
         partida.getLluvia().actualizarDibujoLluvia(getBatch());
     }
@@ -46,7 +46,7 @@ public class GameScreen extends PantallaBase {
         }
 
         if (!partida.actualizar()) {
-            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos(), partida.esModoDificil());
+            Puntaje.getInstancia().registrarPuntaje(partida.getTarro().getPuntos(), partida.getDificultad());
             getGame().setScreen(new GameOverScreen(getGame(), builder));
             dispose();
         }

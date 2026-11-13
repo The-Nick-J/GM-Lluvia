@@ -10,7 +10,7 @@ public interface ComportamientoGota {
 
     public boolean estaFueraDePantalla();
 
-    public boolean colisionaCon(Tarro tarro);
+    public boolean colisionaCon(ReceptorGota tarro);
 
-    public void aplicarEfecto(Tarro tarro);
+    public void aplicarEfecto(ReceptorGota tarro);
 }

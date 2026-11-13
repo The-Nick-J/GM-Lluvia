@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Tarro {
+public class Tarro implements ReceptorGota {
 
     private Rectangle bucket;
     private Texture bucketImage;
@@ -28,8 +28,10 @@ public class Tarro {
     }
 
     public void setEstrategiaMovimiento(EstrategiaMovimiento estrategiaMovimiento) {
+    if (estrategiaMovimiento != null) {
         this.estrategiaMovimiento = estrategiaMovimiento;
     }
+}
 
     public int getVidas() {
         return vidas;

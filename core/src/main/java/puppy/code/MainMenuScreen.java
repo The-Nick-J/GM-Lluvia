@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 
 public class MainMenuScreen extends PantallaBase {
 
-    public MainMenuScreen(final GameLluviaMenu game) {
+    public MainMenuScreen(final ContextoJuego game) {
         super(game);
     }
 

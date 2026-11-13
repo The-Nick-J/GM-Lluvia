@@ -4,19 +4,19 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class GameLluviaMenu extends Game {
+public class GameLluviaMenu extends Game implements ContextoJuego{
 
     private SpriteBatch batch;
     private BitmapFont font;
 
     public void create() {
         batch = new SpriteBatch();
-        font = new BitmapFont(); // use libGDX's default Arial font
-        this.setScreen(new IntroScreen(this));
+        font = new BitmapFont();
+        this.setScreen(new MainMenuScreen(this));
     }
 
     public void render() {
-        super.render(); // important!
+        super.render();
     }
 
     public void dispose() {

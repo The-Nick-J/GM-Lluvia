@@ -13,7 +13,7 @@ public class GotaBuena extends Gota {
     }
 
     @Override
-    public void aplicarEfecto(Tarro tarro) {
+    public void aplicarEfecto(ReceptorGota tarro) {
         tarro.sumarPuntos(10);
         sonidoRecoleccion.play();
     }

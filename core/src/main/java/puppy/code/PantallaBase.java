@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public abstract class PantallaBase implements Screen {
-    private GameLluviaMenu game;
+    private ContextoJuego game;
     private SpriteBatch batch;
     private BitmapFont font;
     private OrthographicCamera camera;
     
-    public PantallaBase(GameLluviaMenu game){
+    public PantallaBase(ContextoJuego game){
         this.game = game;
         this.batch = game.getBatch();
         this.font = game.getFont();
@@ -43,7 +43,7 @@ public abstract class PantallaBase implements Screen {
     
     protected abstract void actualizar(float delta);
     
-    public GameLluviaMenu getGame() {
+    public ContextoJuego getGame() {
         return game;
     }
 
