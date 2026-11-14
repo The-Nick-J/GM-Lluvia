@@ -9,7 +9,7 @@ public class IntroScreen extends PantallaBase {
     private float tiempo;
     private int frase;
 
-    public IntroScreen(GameLluviaMenu game) {
+    public IntroScreen(ContextoJuego game) {
         super(game);
         lluvia = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
         lluvia.setLooping(true);
